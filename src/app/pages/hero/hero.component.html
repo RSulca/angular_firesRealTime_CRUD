@@ -1,0 +1,38 @@
+<div class="animated fadeIn slow">
+    <h1>Héroe</h1>
+    <hr>
+    <div class="row">
+        <div class="col text-right">
+            <button [routerLink]="['/heros']" class="btn btn-outline-danger"> <i class="fas fa-arrow-circle-left"></i>
+                Back</button>
+        </div>
+    </div>
+    <form [formGroup]="forma" (submit)="save()">
+        <div class="form-group">
+            <label>Firebase ID</label>
+            <input type="text" class="form-control" placeholder="Firebase ID" formControlName="id">
+            <small class="form-text text-muted">This id is autogenerate.</small>
+        </div>
+        <div class="form-group">
+            <label>Name</label>
+            <input type="text" class="form-control" placeholder="Name" formControlName="name">
+        </div>
+        <div class="form-group">
+            <label>Power</label>
+            <input type="text" class="form-control" placeholder="Power" formControlName="power">
+        </div>
+        <div class="form-group">
+            <label class="col-12 pl-0">State</label>
+            <button (click)="hero.state=!hero.state" *ngIf="hero.state" class="btn btn-outline-success col-6"> <i
+                    class="fa fa-smile"></i> Alive </button>
+            <button (click)="hero.state=!hero.state" *ngIf="!hero.state" class="btn btn-outline-danger col-6"> <i
+                    class="fa fa-dizzy"></i> Dead </button>
+        </div>
+        <hr>
+        <div class="text-center">
+            <button *ngIf="ID ==='nuevo'" type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save</button>
+        </div>
+    </form>
+    <div class="text-center">
+        <button *ngIf=" ID !== 'nuevo'" (click)="updateHero(forma.get('id').value)" class="btn btn-info"> <i class="fa fa-pen"></i> Update</button>
+    </div>
